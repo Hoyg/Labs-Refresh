@@ -21,10 +21,6 @@ ASP.NET is an open source web framework for building modern web applications and
 
 1. You will need a **Visual Studio Team Services Account**. If you do not have one, you can sign up for free [here](https://www.visualstudio.com/products/visual-studio-team-services-vs){:target="_blank"}
 
-1. You will need a **Personal Access Token** to set up your project using the **VSTS Demo Generator**. Please see this [article](https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate){:target="_blank"} for instructions to create your token.
-
-    {% include note.html content= "You should treat Personal Access Tokens like passwords. It is recommended that you save them somewhere safe so that you can re-use them for future requests." %}
-
 ## Setting up the VSTS Project
 
 1. Use the [VSTS Demo Generator](https://vstsdemogenerator.azurewebsites.net/?name=PartsUnlimited){:target="_blank"} to provision the team project on the VSTS account.
@@ -50,10 +46,6 @@ The connection between the VSTS and the Azure is not automatically established d
    > Disable the pop-up blocker in your browser. If a blank screen is displayed after the **Ok** button is clicked, retry the step.
 
 ## Exercise 2: Configure Release
-
-1. Once the connection is established, manually map the endpoints to the release definition.
-
-   {% include warning.html content= "An error `TFS.WebApi.Exception: Page not found` will be encountered for the Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While this is being fixed on the VSTS Demo Generator, the issue can be fixed by typing a random text in the **Azure Subscription** field and then clicking the **Refresh** icon next to it. Once the field is refreshed, the endpoint can be selected from the dropdown." %}
 
 1. Click on the **Build & Release** section and then click on the **Releases**. Select the release definition **PartsUnlimitedE2E** and click on the **Edit** button.
 
