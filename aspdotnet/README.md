@@ -59,7 +59,7 @@ ASP.NET is an open source web framework for building modern web applications and
 
     ![Deployment Location](images/devedit9.png)
 
-1. Select the **Azure App Service Deploy** task and pick **Azure subscription** from the dropdown list. In the **Slot** section, provide the slot name as **Dev**.
+1. Select the **Azure App Service Deploy** task and select the **Azure subscription** from the dropdown list. In the **Slot** section, provide the slot name as **Dev**.
 
    ![Deployment Slot](images/dev10.png)
 
@@ -79,7 +79,7 @@ ASP.NET is an open source web framework for building modern web applications and
 
    ![Azure Configuration](images/prod13.png)
 
-## Exercise 3: Initiate Continuous Integration (CI) and Continuous Deployment (CD)
+## Exercise 2: Initiate Continuous Integration (CI) and Continuous Deployment (CD)
 
 To automatically initiate the CI-CD, the source code needs to be modified and committed to the source code repository.
 
@@ -125,7 +125,7 @@ To automatically initiate the CI-CD, the source code needs to be modified and co
 
    ![Build Summary](images/buildsucce19.png)
 
-## Exercise 4: Continuous Delivery
+## Exercise 3: Continuous Delivery
 
 The release pipeline is configured as **Infrastructure as a Code** to deploy the application which is associated to the build and is automatically triggered when the build is successfully completed.
 
@@ -152,13 +152,13 @@ The release pipeline is configured as **Infrastructure as a Code** to deploy the
 
    ![View Releases](images/releaseprog22.png)
 
-1. To view the release summary for the environment, double=click on the environment blocks displayed in the report.
+1. To view the release summary for the environment, double click on the environment blocks displayed in the report.
 
    ![Release Summary](images/releasesuccess23.png)
 
    ![Release Summary](images/release_summary.png)
 
-1. Login to the [Azure Portal](https://portal.azure.com) and search for a **Resource Group** named **ASPDOTNET**.
+1. Login to the [Azure Portal](https://portal.azure.com) and search for a **Resource Group** that you had created for the project. (In this example, it's **ASPDOTNET**)
 
    ![Azure Resources](images/azure_resources.png)
 
