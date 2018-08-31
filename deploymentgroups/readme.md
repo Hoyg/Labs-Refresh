@@ -70,27 +70,7 @@ The following resources will be provisioned on the Azure using an ARM template:
 
    ![VSTS Demo Generator](images/vsts_demo.png)
 
-## Exercise 1: Endpoint Creation
-
-Since the connections are not established during the project provisioning, the endpoints need to be configured manually.
-
-1. In the VSTS project portal, click the **Project settings**, select **Service Connections** under the *Build and release* section and click on the 
-**+ New Service Endpoint** button. Choose the endpoint type as **Team Foundation Server/Team Services**. Select the **Basic authentication** option and specify the following details:
-
-   * **Connection Name**: Provide any name
-
-   * **Connection Url**: The VSTS account Url
-
-   * **Personal Access Token**: The token to use to authenticate with the service.
-
-   > The configured endpoint will be used during the agent registration with deployment groups to provide the access to the VSTS team project.
-
-   ![Connection details](images/connection_name.png)
-
-   ![Connection details](images/service_endpoint_vsts.png)
-
-
-## Exercise 2: Creating Deployment Groups
+## Exercise 1: Creating Deployment Groups
 
 The VSTS makes it easier to organize the servers for deploying the applications. A deployment group is a collection of machines with a VSTS deployment agent on each of them. Each machine interacts with the VSTS to coordinate deployment of the app.
 
@@ -104,7 +84,7 @@ The VSTS makes it easier to organize the servers for deploying the applications.
 
    ![Registration script](images/script_dg.png)
 
-## Exercise 3: Configure Releases
+## Exercise 2: Configure Releases
 
 The target servers are available in the deployment group for deploying the application. The release definition uses **Phases** to deploy the application to the target servers.
 
@@ -124,14 +104,36 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
 
      * **Azure Resource Group Deployment**: This task will automate the configuration of the deployment group agents to the web and db servers. 
 
-        * To configure new a service connection, select the Azure subscription from the list and click **Authorize**. 
+        ***Linking Azure Subscription***
+            
+        * If the subscription is already listed, select the Azure subscription from the list and click `Authorize`.
 
-        * If your subscription is not listed or if you want to use an existing service principal, you can setup an Azure service connection using the **Add** or **Manage** button. 
+             ![Authorize](images/authorize.png)
 
-       ![Agent Phase](images/agent_phase.png)
-       
+        * If your subscription is not listed or if you want to use an existing service principal, click the `Manage` link.
 
-       ![Agent Phase](images/agent_phase1.png)
+            Click on the `+New Service Connection` button and select the **Azure Resource Manager** option. Provide Connection name, select the Azure Subscription from the list and the click on the Ok button. The Azure credentials will be required to be provided to authorize the connection.
+
+            ![Endpoint creation](images/endpoint_creation.png)
+
+       ***Linking VSTS/TFS Service Connection***
+
+       Since the connections are not established during the project provisioning, the endpoints need to be configured manually.
+
+        1. Click **New** button next to the **VSTS/TFS Service Connection** field. With the **Token Based Authentication** option selection, specify the following details:
+
+            * **Connection Name**: Provide any name
+
+            * **Connection Url**: The VSTS account Url
+
+            * **Personal Access Token**: The token to use to authenticate with the service.
+
+            ![Connection details](images/service_endpoint_vsts.png)
+
+        1. Choose the **VSTS Project** from the drop down and the created **Deployment Group**.
+
+            ![Agent Phase](images/agent_phase.png)
+            
 
    * **Database deploy phase**: This deployment group phase executes tasks on the machines defined in the deployment group. This phase is linked to the **db** tag.
 
