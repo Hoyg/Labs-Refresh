@@ -33,19 +33,7 @@ ASP.NET is an open source web framework for building modern web applications and
 
    ![VSTS Demo Generator](images/vstsdemogenproject5.png)
 
-## Exercise 1: Endpoint Creation
-
-The connection between the VSTS and the Azure is not automatically established during the team project provisioning, and hence the endpoints need to be created manually. This endpoint will be used to connect **VSTS** with **Azure**. Follow the steps outlined below to create the endpoint.
-
-1. In the VSTS home page, click on the **Settings** gear icon ![Admin Settings] and then click on the **Services** option to navigate to the **Services** screen.
-
-1. Click on the **+New Service Endpoint** button and select the **Azure Resource Manager** option. Provide  `Connection name`, select the `Azure Subscription` from the list and the click on the **Ok** button. The Azure credentials will be required to be provided to authorize the connection.
-
-   ![Endpoint Creation](images/service6.png)
-
-   > Disable the pop-up blocker in your browser. If a blank screen is displayed after the **Ok** button is clicked, retry the step.
-
-## Exercise 2: Configure Release
+## Exercise 1: Configure Release
 
 1. Click on the **Build & Release** section and then click on the **Releases**. Select the release definition **PartsUnlimitedE2E** and click on the **Edit** button.
 
@@ -55,9 +43,21 @@ The connection between the VSTS and the Azure is not automatically established d
 
    ![Release Tasks](images/dev8.png)
 
-1. Select the **Azure Resource Group Deployment** task, pick the **Azure subscription** having the endpoint configuration from the dropdown list and select the desired **location** for deployment.
+1. Select the **Azure Resource Group Deployment** task, choose the **Azure subscription**. There are 2 ways of choosing the Azure subscription.
+   
+    * If your subscription is not listed or if you want to use an existing service principal, click the `Manage` link. 
 
-   ![Deployment Location](images/devedit9.png)
+        1. Click on the `+New Service Connection` button and select the **Azure Resource Manager** option. Provide Connection name, select the Azure Subscription from the list and the click on the Ok button. The Azure credentials will be required to be provided to authorize the connection.
+
+        ![Endpoint](images/endpoint_creation.png)
+
+    * If the subscription is already listed, select the Azure subscription from the list and click `Authorize`.
+
+        ![Authorize](images/authorize.png)
+
+1. Select the desired **Location** for deployment.
+
+    ![Deployment Location](images/devedit9.png)
 
 1. Select the **Azure App Service Deploy** task and pick **Azure subscription** from the dropdown list. In the **Slot** section, provide the slot name as **Dev**.
 
