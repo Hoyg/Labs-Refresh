@@ -99,9 +99,13 @@ In this exercise we will create a SQL azure instance and  migrate the applicatio
 
 ## Exercise 2: Add Docker Support and run the application locally & debug within the Docker container using Visual Studio
 
-1. Visual Studio has great support for Docker. In order to containerize the application using Docker, all you have to do is right-click on the project, select **Add->Docker Support**
+1. Visual Studio has great support for Docker. In order to containerize the application using Docker, all you must do is right-click on the project, select **Add->Container Orchestrator Support**.
 
    ![adddockersupport](images/adddockersupport.png)
+
+1. Select **Docker Compose** in the drop down.
+
+  ![adddockercompose](images/adddockercompose.png)
 
 2. Visual Studio then adds the Docker file, compose files and a specific Docker project to the solution. It also inspects the project to determine the proper base image to use for your project.
 
