@@ -56,11 +56,12 @@ The Azure DevOps Project simplifies the initial configuration of a continuous in
 
     ![vstsproject](images/vstsproject.png)
 
-7. In a few minutes, the **project dashboard** loads in the Azure portal. A sample java application is set up in a repository in your VSTS account, a build executes, and your application deploys to Azure. This dashboard provides visibility into your **code repository**, **VSTS CI/CD pipeline**, and your **application in Azure**. 
+7. In a few minutes, the resources are created. Click on the Notifications icon and click **Go to resource**. A **project dashboard** loads in the Azure portal. A sample java application is set up in a repository in your VSTS account, a build executes, and your application deploys to Azure. This dashboard provides visibility into your **code repository**, **VSTS CI/CD pipeline**, and your **application in Azure**. 
 
    ![dashboard](images/dashboard.png)
 
 8.  On the right side of the dashboard, select **Browse** to view your running application.
+
     ![browsewebapp](images/browsewebapp.png)
 
     The web app look like as shown in below figure
@@ -120,9 +121,9 @@ The Azure DevOps Project simplifies the initial configuration of a continuous in
 
        ![releasetasks](images/releasetasks.png)
 
-13. On the right-hand side of the browser, select **View releases**. This view shows a history of releases.
+13. On the right-hand side of the browser, click the ellipsis and select **View releases**. This view shows a history of releases.
 
-    ![viewreleases](images/viewreleases.png)
+    ![viewreleases](images/viewreleases.png) 
 
     ![releasehistory](images/releasehistory.png)
 
@@ -132,7 +133,9 @@ The Azure DevOps Project simplifies the initial configuration of a continuous in
 
     ![releasesummary](images/releasesummary.png)
 
-15. Select **Logs**. The logs contain useful information about the deployment process. They can be viewed both during and after deployments.
+15. Under **Stages**, hover the mouse on **Dev** environment and click **Logs**. The logs contain useful information about the deployment process. They can be viewed both during and after deployments.
+
+     ![Environment](images/dev_logs.png)
 
      ![logs](images/logs.png)
 
