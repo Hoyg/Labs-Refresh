@@ -37,85 +37,82 @@ This lab shows how to deploy an ASP.NET Core application to Azure App Service wi
 
    > **VSTS Demo Generator** helps you create team projects on your VSTS account with sample content that include source code, work items,iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
 
-   ![VSTS Demo Generator](images/vsts_demoGen.png)
+   ![VSTS Demo Generator](images/vstsdemo.png)
 
 1. Once the team project is provisioned, click on the URL to navigate to the team project.
 
-   ![VSTS Demo Generator](images/project_provision.png)
+   ![VSTS Demo Generator](images/vstsdemo2.png)
 
-## Exercise 1: Endpoint Creation
-
-Since the connections are not established during project provisioning, we will manually create the endpoints.
-
-In VSTS, navigate to **Services** by clicking the gear icon ![gear](images/gear.png), and click **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** with **Azure**.
-
-   ![endpoint_creation](images/endpoint_creation.png)
-
-   You will be prompted to authorize this connection with Azure credentials. Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
-
-## Exercise 2: Configure Release
-
-Now that connections are established, we will manually map the endpoints to release definition.
-
-{% include warning.html content= "You will encounter an error - **TFS.WebApi.Exception: Page not found** for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the **Azure Subscription** field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down." %}
+## Exercise 1: Configure Release
 
 1. Go to **Releases** under **Build & Release** tab, edit the release definition **MyHealthClinicE2E**.
 
-   ![create_release](images/create_release.png)
+   ![create_release](images/releaseedit3.png)
 
-1. Select **Tasks** and click **Dev**.
+1. Select **Tasks** tab and click **Dev**.
 
-   ![release_2](images/release_2.png)
+   ![release_2](images/release4.png)
 
-1. Under **Azure Resource Group Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
+1. Select the **Azure Resource Group Deployment** task, choose the **Azure subscription**. There are 2 ways of choosing the Azure subscription.
 
-   ![release_3](images/release_3.png)
+    1. If your subscription is not listed or if you want to use an existing service principal, click the Manage link.
 
-1. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown. Under the **Slot** section enter the slot name as **Dev**.
+        Click on the **+New Service Connection** button and select the **Azure Resource Manager** option. Provide Connection name, select the Azure Subscription from the list and the click on the Ok button. The Azure credentials will be required to be provided to authorize the connection.
 
-   ![release_4](images/release_4.png)
+        ![Endpoint](images/endpoint5.png)
 
-1. Similarly update **Azure subscription** with the endpoint components for **QA** and **Production** environments. Go to **Tasks** and select **QA**.
+    2. If the subscription is already listed, select the Azure subscription from the list and click Authorize.
 
-   ![qa](images/qa.png)
+        ![Endpoint](images/endpoint6.png)
 
-1. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown. Under the **Slot** section enter the slot name as **Staging**.
 
-   ![qa_1](images/qa_1.png)
+1. Select the desired **Location** for deployment.
+
+   ![release_3](images/location7.png)
+
+1. Select the **Azure App Service Deploy** task and pick **Azure subscription** from the dropdown list. In the **Slot** section, provide the slot name as **Dev**.
+
+   ![release_4](images/dev8.png)
+
+1. Similarly update **Azure subscription** for **QA** and **Production** environments. Go to **Tasks** and select **QA**.
+
+   ![qa](images/qa9.png)
+
+1. Under **Azure App Service Deploy** task, update **Azure subscription** from the dropdown. Under the **Slot** section enter the slot name as **Staging**.
+
+   ![qa_1](images/qa10.png)
 
 1. Go to **Tasks** and select **Production**.
 
-   ![prod](images/prod.png)
+   ![prod](images/prod11.png)
 
-1. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown and click **Save** to save the release definition.
+1. Under **Azure App Service Deploy** task, update **Azure subscription** from the dropdown and click **Save** to save the release definition.
 
-   ![prod_1](images/prod_1.png)
+   ![prod_1](images/prod12.png)
 
-## Exercise 3: Triggering a Continuous Integration (CI) build
+## Exercise 2: Triggering a Continuous Integration (CI) build
 
 1. Go to the **Code** hub.
 
-   ![code_hub](images/code_hub.png)
+   ![code_hub](images/Code13.png)
 
 1. We have a **DOTNETCORE** app code provisioned by the demo generator system. We will deploy this to Azure app service.
 
 1. We have a Continuous Integration (CI) build setup to run upon a code commit. Let's make a simple change to the code to trigger the CI build.
 
-1. Open the file **Index.cshtml** by navigating to the below path-
+1. Open the file **Index.cshtml** by navigating to the below path and click on **Edit**.
 
    > **MyHealthClinic/src/MyHealth.Web/Views/Home/Index.cshtml**
 
-   ![code_edit](images/code_edit.png)
+   ![code_edit](images/Code14.png)
 
-1. Edit the code. For this example, let's change **line 33** to change the text from **Login** to **Private Area**.
+1. Edit the code. For this example, let's change **line 33** to change the text from **Login** to **Private Area** and click on **Commit** to save and commit the changes.
 
-   ![update_code](images/update_code.png)
+   ![update_code](images/Code15.png)
 
-1. Select **Commit** to save and commit the changes.
+1. The code commit will trigger the CI build. Go to the **Build** tab to see the CI build running in progress. 
 
-1. The code commit will trigger the CI build. Go to the **Build** tab to see the CI build running in progress.
-
-   ![build_in_progress](images/build_in_progress.png)
+   ![build_in_progress](images/buildprog18.png)
 
    While the build is in progress, let's explore the build definition. The tasks that is used in the build definition are listed in the table below.
 
@@ -132,17 +129,17 @@ Now that connections are established, we will manually map the endpoints to rele
    |![copyfiles](images/copyfiles.png) **Copy Files**| We will copy the zipped file and the ARM template to a staging directory|
    |![publishartifacts](images/publishartifacts.png) **Publish Build Artifacts**| And finally, we will publish the files in the staging directory which were copied in the previous step|
 
-1. Click on the build number to open the live console.
+1. Select the build definition `MyHealthClinicE2E` and click on the ellipsis to view the build in progress.
 
-   ![build_number](images/build_number.png)
+   ![build_number](images/Build16.png)
 
-   ![build_in_progress_2](images/build_in_progress_2.png)
+   ![build_in_progress_2](images/buildprg17.png)
 
 1. Once the build is complete click on the build number, to see the summary which shows **Test Results** as shown.
 
-   ![build_summary](images/build_summary.png)
+   ![build_summary](images/buldsuccess19.png)
 
-## Exercise 4: Continuous Delivery
+## Exercise 3: Continuous Delivery
 
 We are using **Infrastructure as a Code** in the release pipeline. We have a release configured to deploy the application which is associated to the build and triggered when the build is successful.
 
@@ -150,15 +147,15 @@ We are using **Infrastructure as a Code** in the release pipeline. We have a rel
 
 1. Select the **MyHealthClinicE2E** definition, you will see the release in-progress.
 
-   ![release](images/release.png)
+   ![release](images/release20.png)
 
 1. While the release is in-progress, let's explore the tasks used. Click **edit** to see the release pipeline. We have three environments **Dev, QA** and **Production**.
 
-   ![pipeline](images/pipeline.png)
+   ![pipeline](images/release21.png)
 
    >Go to the Dev environment, you will see 2 tasks are used. Let us explore the tasks.
 
-   ![release_tasks](images/release_tasks.png)
+   ![release_tasks](images/release22.png)
 
    - **Azure Resource Group Deployment**: The project used in this lab contains frontend (Azure App Service) and backend (Azure SQL DB) services. We will provision these services as PAAS on Azure using ARM templates. This task will create the above services in a resource group **dotnetcore.**
 
@@ -166,13 +163,13 @@ We are using **Infrastructure as a Code** in the release pipeline. We have a rel
 
 1. Click on **View releases**.
 
-   ![view_releases](images/view_releases.png)
+   ![view_releases](images/release23.png)
 
-1. Double click on the release to see the release summary.
+1. Double click on each environment to see the release summary and logs.
 
-   ![release_summary1](images/release_summary1.png)
+   ![release_summary1](images/releasesucc24.png)
 
-   ![release_summary](images/release_summary.png)
+   ![release_summary](images/release25.png)
 
 1. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **dotnetcore**.
 

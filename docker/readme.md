@@ -91,21 +91,21 @@ The Web App for Containers allows creation of custom [Docker](https://www.docker
 
    > **VSTS Demo Generator** helps you create team projects on your VSTS account with sample content that include source code, work items, iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
 
-   ![VSTS Demo Generator](images/VSTSDemogenerator.png)
+   ![VSTS Demo Generator](images/vstsdemo.png)
 
 1. Once the team project is provisioned, click on the URL to navigate to the team project.
 
-   ![VSTS Demo Generator](images/vstsdemogen3.png)
+   ![VSTS Demo Generator](images/Vstsdemo2.png)
 
 ## Exercise 1: Endpoint Creation
 
 The connection between the VSTS and the Azure is not automatically established during the team project provisioning, and hence the endpoints need to be created manually. This endpoint will be used to connect the **VSTS** with **Azure**. Follow the steps outlined below to create the endpoint.
 
-1. In the VSTS home page, click on the **Settings** gear icon ![Admin Settings](images/gear.png) and then click on the **Services** option to navigate to the **Services** screen.
+1. In the VSTS home page, click on the **Project settings** gear icon and then click on the **Service connections** option to navigate to the **Service connections** screen.
+Click on the **+New Service Endpoint** dropdown and select the **Azure Resource Manager** option. Provide  `Connection name`, select the `Azure Subscription` and select the
+appropriate `Resource Group` which we have created earlier from the list and the click on the **OK** button. The Azure credentials will be required to be provided to authorize the connection.
 
-1. Click on the **+New Service Endpoint** button and select the **Azure Resource Manager** option. Provide  `Connection name`, select the `Azure Subscription` from the list and the click on the **OK** button. The Azure credentials will be required to be provided to authorize the connection.
-
-   ![Endpoint Creation](images/azureendpoint.png)
+   ![Endpoint Creation](images/endpoint3.png)
 
    {% include important.html content= "Disable the pop-up blocker in your browser. If a blank screen is displayed after the **OK** button is clicked, retry the step." %}
 
@@ -115,13 +115,17 @@ Now that the connection is established, the **Azure endpoint** and the **Azure C
 
 {% include warning.html content= "TFS.WebApi.Exception: Page not found may be encountered for the Azure tasks in the build / release definition. This issue can be fixed by typing a random text in the Azure Subscription field and then clicking the **Refresh** icon next to it. Once the field is refreshed, the endpoint can be selected from the drop down list. This issue occurrence is due to a recent change in the VSTS Release Management API. The VSTS Demo Generator is being updated to handle this change to prevent this issue." %}
 
-1. Navigate to the **Builds** option under the **Build and Release** tab. Select the build definition `MHCDocker.build`, click on the ellipsis and select the **Edit** option.
+1. Navigate to the **Builds** option under the **Build and Release** tab. Select the build definition `MHCDocker.build`, and select the **Edit** option.
 
-   ![Build](images/build.png)
+   ![Build](images/build4_1.png)
 
-1. In the **Process** section, update the **Azure subscription** and the **Azure Container Registry** with the endpoint component from the dropdown. (use the arrow keys to choose **Azure Container Registry** for the first time). Click on the **Save** button.
+1. In the **Run services, Build services and Push services** task, update the **Azure subscription** and the **Azure Container Registry** with the endpoint component from the dropdown. (use the arrow keys to choose **Azure Container Registry** for the first time). Click on the **Save** button.
 
-   ![Tasks](images/updateprocessbd.png)
+   ![Tasks](images/build5.png)
+
+   ![Tasks](images/build6.png)
+
+   ![Tasks](images/build7.png)
 
    |Tasks|Usage|
    |-----|-----|
@@ -132,9 +136,9 @@ Now that the connection is established, the **Azure endpoint** and the **Azure C
 
 1. Navigate to the **Releases** section under the **Build & Release** tab. Select the release definition `MHCDocker.release`, click on the **Edit** option and then click on the **Tasks** section.
 
-   ![Release](images/release.png)
+   ![Release](images/release8.png)
 
-   ![Release Tasks](images/release_tasks.png)
+   ![Release Tasks](images/release9.png)
 
 1. The usage details of the agents are provided below:
 
@@ -147,17 +151,17 @@ Now that the connection is established, the **Azure endpoint** and the **Azure C
 
     **Execute Azure SQL:DacpacTask**: This task will deploy the dacpac to the **mhcdb** database so that the schema and data is configured for the backend.
 
-    ![Update DB Task](images/update_dbtask.png)
+    ![Update DB Task](images/release10.png)
 
 1. Under the **Azure App Service Deploy** task, update the **Azure subscription** and the **Azure Service name** tasks with the endpoint components from the dropdown.
 
     **Azure App Service Deploy** will pull the appropriate docker image corresponding to the BuildID from repository specified, and deploys the image to the Linux App Service.
 
-    ![Update repository](images/updatedrd.png)
+    ![Update repository](images/release11.png)
 
 1. Click on the **Variables** section, update the **ACR** details and the **SQLserver** details with the details noted earlier while configuration of the environment. Click on the **Save** button.
 
-    ![Update variables](images/update_rdvariables.png)
+    ![Update variables](images/release12.png)
 
    >The **Database Name** is set to **mhcdb**, the **Server Admin Login** is set to **sqladmin** and the **Password** is set currently to **P2ssw0rd1234**.
 
@@ -167,23 +171,22 @@ In this exercise, the source code will be modified to trigger the CI-CD.
 
 1. Click on the **Files** section under the **Code** tab, and navigate to the `Docker/src/MyHealth.Web/Views/Home` folder and open the `Index.cshtml` file for editing.
 
-   ![Edit code](images/editcode.png)
+   ![Edit code](images/code13.png)
 
-1. Modify the text **JOIN US** to **CONTACT US** on the line number 28 and then click on the **Commit** button.
+1. Modify the text **JOIN US** to **CONTACT US** on the line number 28 and then click on the **Commit** button.This action would initiate an automatic build for the source code.
 
-    ![Line Edit](images/lineedit.png)
+    ![Line Edit](images/code14.png)
 
-1. In the **Commit** window, provide comments and then click on the **Commit** button to commit the changes to the repository. This action would initiate an automatic build for the source code.
 
-    ![Commit](images/commit.png)
+1. Click on **Builds** tab, select the build definition `MHCDoker.build` and click on ellipsis to view the build in progress.
 
-1. Select the **Builds** tab and click on the build number to view the build in progress.
+    ![Build](images/buildprog15.png)
 
-    ![Build](images/build3.png)
+    ![Build](images/buildprog16.png)
 
 1. The Build will generate and push the docker image of the web application to the Azure Container Registry. Once the build is completed, the build summary will be displayed.
 
-    ![Build Summary](images/build4.png)
+    ![Build Summary](images/buildsucc17.png)
 
 1. Navigate to the [Azure Portal](https://portal.azure.com){:target="_blank"} and click on the **App Service** that was created at the beginning of this lab. Select the **Container Settings** option and provide the information as suggested and then click the **Save** button.
 
@@ -206,11 +209,11 @@ In this exercise, the source code will be modified to trigger the CI-CD.
 
 1. Navigate to the **Releases** section under **Build & Releases** in the VSTS, and double-click on the latest release displayed on the page. Click on the **Logs** section to view the details of the release in progress.
 
-    ![Release Progress](images/rel3.png)
+    ![Release Progress](images/releaseprog18.png)
 
 1. The release will deploy the docker image to the App Service based on the **BuildID** tagged with the docker image. Once the release is completed, the release summary will be displayed.
 
-    ![Summary](images/rel8.png)
+    ![Summary](images/releasesucc19.png)
 
 1. Navigate back to the [Azure Portal](https://portal.azure.com){:target="_blank"}   and click on the **Overview** section of the **App Service**. Click on the link displayed under the **URL** field to browse the application and view the changes.
 
