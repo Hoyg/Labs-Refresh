@@ -8,46 +8,46 @@ folder: /labs/vstsextend/aspdotnet/
 
 ## Overview
 
-This lab details the deployment of an [ASP.NET](https://www.asp.net/){:target="_blank"} application to the Azure App Service using Visual Studio Team Services (VSTS).
+This lab details the deployment of an [ASP.NET](https://www.asp.net/){:target="_blank"} application to the Azure App Service using **Azure DevOps  Organization**.
 ASP.NET is an open source web framework for building modern web applications and services. ASP.NET creates websites based on HTML5, CSS, and JavaScript that are simple, fast, and can scale to millions of users.
 
 ### Prerequisites for the lab
 
 1. **Microsoft Azure Account**: You will need a valid and active Azure account for the Azure labs. If you do not have one, you can sign up for a [free trial](https://azure.microsoft.com/en-us/free/){:target="_blank"}
 
-    * If you are an active Visual Studio Subscriber, you are entitled for a $50-$150 credit per month. You can refer to this [link](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/){:target="_blank"} to find out more information about this including how to activate and start using your monthly Azure credit.
+    * If you are an active Visual Studio Subscriber, you are entitled for a $50-$150 credit per month. You can refer to this [link](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/){:target="_blank"} to find out more information about this, including how to activate and start using your monthly Azure credit.
 
     * If you are not a Visual Studio Subscriber, you can sign up for the FREE [Visual Studio Dev Essentials](https://www.visualstudio.com/dev-essentials/){:target="_blank"} program to create a **Azure free account** (includes 1 year of free services, $200 for 1st month).
 
-1. You will need a **Visual Studio Team Services Account**. If you do not have one, you can sign up for free [here](https://www.visualstudio.com/products/visual-studio-team-services-vs){:target="_blank"}
+1. You will need a **Azure DevOps Organization**. If you do not have one, you can sign up for free [here](https://www.visualstudio.com/products/visual-studio-team-services-vs){:target="_blank"}
 
-## Setting up the VSTS Project
+## Setting up the Azure DevOps Project
 
-1. Use the [VSTS Demo Generator](https://vstsdemogenerator.azurewebsites.net/?name=PartsUnlimited){:target="_blank"} to provision the team project on the VSTS account.
+1. Use the [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/?TemplateId=77379&Name=PartsUnlimited){:target="_blank"} to provision the team project on the Azure DevOps Organization.
 
-   > **VSTS Demo Generator** helps you create team projects on your VSTS account with sample content that include source code, work items,iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
+   > **Azure DevOps Demo Generator** helps you create team projects on your Azure DevOps Organization with sample content that include source code, work items,iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
 
-   ![VSTS Demo Generator](images/vstsdemo.png)
+   ![VSTS Demo Generator](images/vstsdemogen1.png)
 
 1. Once the team project is provisioned, click on the URL to navigate to the team project.
 
-   ![VSTS Demo Generator](images/vstsdemogenproject5.png)
+   ![VSTS Demo Generator](images/vstsdemogen1_2.png)
 
 ## Exercise 1: Configure Release
 
-1. Click on the **Build & Release** section and then click on the **Releases**. Select the release definition **PartsUnlimitedE2E** and click on the **Edit** button.
+1. Click on the **Pipelines** section and then click on the **Releases**. Select the release definition **PartsUnlimitedE2E** and click on the **Edit** button.
 
-   ![Edit Release Definition](images/releaseedit7.png)
+   ![Edit Release Definition](images/release1_3.png)
 
 1. Select the **Tasks** tab and click on the **Dev** option.
 
-   ![Release Tasks](images/dev8.png)
+   ![Release Tasks](images/Dev1_4.png)
 
 1. Select the **Azure Resource Group Deployment** task, choose the **Azure subscription**. There are 2 ways of choosing the Azure subscription.
    
     * If your subscription is not listed or if you want to use an existing service principal, click the `Manage` link. 
 
-        1. Click on the `+New Service Connection` button and select the **Azure Resource Manager** option. Provide Connection name, select the Azure Subscription from the list and the click on the Ok button. The Azure credentials will be required to be provided to authorize the connection.
+        1. Click on the `+New Service Connection` button and select the **Azure Resource Manager** option. Provide Connection name, select the Azure Subscription from the list and the click on the Ok button. The Azure credentials will be required to be provided to    authorize the connection.
 
         ![Endpoint](images/endpoint_creation.png)
 
@@ -57,53 +57,53 @@ ASP.NET is an open source web framework for building modern web applications and
 
 1. Select the desired **Location** for deployment.
 
-    ![Deployment Location](images/devedit9.png)
+    ![Deployment Location](images/dev1_5.png)
 
-1. Select the **Azure App Service Deploy** task and select the **Azure subscription** from the dropdown list. In the **Slot** section, provide the slot name as **Dev**.
+1. Select the **Azure App Service Deploy** task and pick **Azure subscription** from the dropdown list. In the **Slot** section, provide the slot name as **Dev**.
 
-   ![Deployment Slot](images/dev10.png)
+   ![Deployment Slot](images/dev1_6.png)
 
 1. Similarly configure the  **Azure subscription** for the **QA** and **Production** environments. Select the **Tasks** tab and click on the **QA** option.
 
-   ![Tasks](images/qaselect10.png)
+   ![Tasks](images/qa1_7.png)
 
 1. Select the **Azure App Service Deploy** task and pick the **Azure subscription** from the dropdown. Under the **Slot** section enter the slot name as **Staging**.
 
-   ![Staging](images/qaedit11.png)
+   ![Staging](images/qa1_8.png)
 
 1. Navigate to the **Tasks** tab and select the **Production** option.
 
-   ![Production](images/prodselect12.png)
+   ![Production](images/prod1_9.png)
 
 1. Select the **Azure App Service Deploy** task, pick the **Azure subscription** from the dropdown and click on the **Save** button to save the release definition.
 
-   ![Azure Configuration](images/prod13.png)
+   ![Azure Configuration](images/prod1_10.png)
 
-## Exercise 2: Initiate Continuous Integration (CI) and Continuous Deployment (CD)
+## Exercise 3: Initiate Continuous Integration (CI) and Continuous Deployment (CD)
 
 To automatically initiate the CI-CD, the source code needs to be modified and committed to the source code repository.
 
-1. Navigate to the **Code** hub on the VSTS portal.
+1. Navigate to the **Repos** hub on the Azure DevOps Organization portal.
 
-   ![Code Hub](images/code14.png)
+   ![Code Hub](images/Repos11.png)
 
-1. The repository contains an **ASP.NET** application source code provisioned by the VSTS Demo Generator. This application will be deployed to the Azure App Service.
+1. The repository contains an **ASP.NET** application source code provisioned by the Azure DevOps Demo Generator. This application will be deployed to the Azure App Service.
 
    > The team project already has a Continuous Integration (CI) build configured that gets automatically initiated when the source code modifications are committed to the repository.
 
-1. To edit the source code, open the file **Index.cshtml** by navigating to the below path in the master branch:
+1. To edit the source code, open the file **Index.cshtml** by navigating to the below path in the master branch and click on **Edit** :
 
    `PartsUnlimited/PartsUnlimited-aspnet45/src/PartsUnlimitedWebsite/Views/Home/Index.cshtml`
 
-   ![Source code path](images/code15.png)
+   ![Source code path](images/Repos12.png)
 
 1. Make some small changes to the code. For this example, change the discount percentage of `50%` to `70%` on `line 28` and then click on the **Commit** button to save and commit the changes.
 
-   ![Code Edit](images/code16.png)
+   ![Code Edit](images/Repos13.png)
 
-1. The code commit will trigger the CI build. Navigate to the **Build and Release** tab to view the progress of the  the CI build initiated automatically due to the code changes.
+1. The code commit will trigger the CI build. Navigate to the **Pipelines** tab to view the progress of the  the CI build initiated automatically due to the code changes.
 
-   ![CI Status](images/buildprog16.png)
+   ![CI Status](images/buildinprog1_14.png)
 
    The following tasks are used in the build definition:
 
@@ -115,33 +115,30 @@ To automatically initiate the CI-CD, the source code needs to be modified and co
    |![Copy Files](images/copyfiles.png) **Copy Files**| This task is used to copy the zipped binaries and the ARM template to a staging directory|
    |![Publish Build Artifacts](images/buildartifacts.png) **Publish Build Artifacts**| This task is used to deploy the binaries in the staging directory that were copied in the previous step|
 
-1. To view the live progress of the build, click on the build number to open the build live console.
+1. To view the live progress of the build, click on ellipsis and select **View build results**.
 
-   ![Build number](images/buildprog17.png)
+   ![Build number](images/build1_15.png)
 
-   ![Buidl Progress](images/buildprog18.png)
+   ![Buidl Progress](images/build1_16.png)
 
-1. Once the build is completed, if not clicked earlier, click on the build number to view the build summary including **Test Results**, **Code Coverage** etc.
+1. Once the build is completed, build summary display **Test Results**, **Code Coverage** etc.
 
-   ![Build Summary](images/buildsucce19.png)
+   ![Build Summary](images/build1_17.png)
 
-## Exercise 3: Continuous Delivery
+## Exercise 4: Continuous Delivery
 
 The release pipeline is configured as **Infrastructure as a Code** to deploy the application which is associated to the build and is automatically triggered when the build is successfully completed.
 
-1. To view the release progress, click on the **Build and Release** hub and select the **Release** option.
+1. To view the release progress, click on the **Pipelines** hub and select the **Release** option. Select **PartsUnlimitedE2E** definition, to view the release in progress.
 
-1. Click on the **PartsUnlimitedE2E** definition, to view the release progress.
+1.  Click on the **Edit** button to view the release pipeline. There are three configured deployment environments namely the **Dev**, **QA** and **Production**.
 
-   ![Release Progress](images/releaseprog20.png)
+    ![Release Progress](images/release1_18.png)
 
-1. Click on the **Edit** button to view the release pipeline. There are three configured deployment environments namely the **Dev**, **QA** and **Production**.
-
-   ![Edit Release](images/releaseprog21.png)
 
 1. Select the **Dev** environment to view the tasks configured.
 
-   ![Release Tasks](images/release24.png)
+   ![Release Tasks](images/release1_19.png)
 
    | Tasks used in Release | Usage / Purpose |
    |-------|-------|
@@ -150,15 +147,15 @@ The release pipeline is configured as **Infrastructure as a Code** to deploy the
 
 1. To view the outcome of the release, click on the **View releases** option.
 
-   ![View Releases](images/releaseprog22.png)
+   ![View Releases](images/release1_20.png)
 
-1. To view the release summary for the environment, double click on the environment blocks displayed in the report.
+1. To view the release summary for the environment, double click on the environment blocks displayed in the report and click on logs to view the detailed release summary for each environment. 
 
-   ![Release Summary](images/releasesuccess23.png)
+   ![Release Summary](images/release1_21.png)
 
-   ![Release Summary](images/release_summary.png)
+   ![Release Summary](images/release1_22.png)
 
-1. Login to the [Azure Portal](https://portal.azure.com) and search for a **Resource Group** that you had created for the project. (In this example, it's **ASPDOTNET**)
+1. Login to the [Azure Portal](https://portal.azure.com) and search for a **Resource Group** named **ASPDOTNET**.
 
    ![Azure Resources](images/azure_resources.png)
 

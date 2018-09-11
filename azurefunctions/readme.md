@@ -10,10 +10,10 @@ Azure Functions is an event driven, compute-on-demand experience that extends th
 
  In this lab, you will
 
- * Create a Visual Studio Team Services account and generate the PartsUnlimited project data with VSTS Demo Generator tool
- * Setup Azure Functions in Azure portal and add code via Visual Studio
- * Configure the build definition in Visual Studio Team Services to build and test the code
- * Configure the CD pipeline in Visual Studio Team Services for Website, API and Azure Functions
+ * Create an **Azure DevOps Organization** and generate the *PartsUnlimited* project data with **Azure DevOps Demo Generator** tool.
+ * Setup **Azure Functions** in Azure portal and add code via Visual Studio.
+ * Configure a **Build pipeline** in Azure DevOps Organization to build and test the code.
+ * Configure a **Release pipeline** in Azure DevOps Organization for Website, API and Azure Functions.
 
 ## Pre-requisites for the lab
 
@@ -23,7 +23,7 @@ Azure Functions is an event driven, compute-on-demand experience that extends th
 
    * If you are not a Visual Studio Subscriber, you can sign up for the FREE [Visual Studio Dev Essentials] (https://www.visualstudio.com/dev-essentials/) program to create **Azure free account** (includes 1 year of free services, $200 for 1st month).
 
-1. You will need a **Visual Studio Team Services Account**. If you do not have one, you can sign up for free [here](https://www.visualstudio.com/products/visual-studio-team-services-vs)
+1. **Azure DevOps services Organization**: You will need an Azure DevOps services account. If you don’t have one, you can sign up for one from here [here](https://azure.microsoft.com/en-us/services/devops/)
 
 1. Visual Studio 2017 version 15.4 or later  with [.Net Core SDK](https://www.microsoft.com/net/learn/get-started/windows#windows) and [Azure Development Tools for Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs) are installed.
 
@@ -41,26 +41,26 @@ Azure Functions is an event driven, compute-on-demand experience that extends th
 
 ## Setting up the VSTS team project
 
-1. Use the [VSTS Demo Generator](https://vstsdemogenerator.azurewebsites.net/?TemplateId=77376&Name=AzureFunctions_BuildWorkshop) to provision the project on your VSTS account.
+1. Use the [Azure DevOps Demo Generator](http://azuredevopsdemogenerator.azurewebsites.net/?TemplateId=77376&Name=AzureFunctions_BuildWorkshop) to provision the project on your Azure DevOps Organization account.
 
-   > **VSTS Demo Generator** helps you create team projects on your VSTS account with sample content that include source code, work items,iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
+   > **Azure DevOps Demo Generator** helps you create team projects on your **Azure DevOps Organization** account with sample content that include source code, work items,iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
 
-   ![VSTSDemogenerator](images/VSTSDemogenerator.png)
+   ![VSTSDemogenerator](images/DevOpsDemogenerator.png)
 
-    This URL will automatically select **AzureFunctions** template in the demo generator. If you want to try other projects, use this URL instead -[https://vstsdemogenerator.azurewebsites.net/](https://vstsdemogenerator.azurewebsites.net/)
+    This URL will automatically select **AzureFunctions** template in the demo generator. If you want to try other projects, use this URL instead -   [http://azuredevopsdemogenerator.azurewebsites.net/](http://azuredevopsdemogenerator.azurewebsites.net/)
 
 1. Once the project is provisioned, click the URL to navigate to the project.
 
-   ![VSTSDemogenerator2](images/VSTSDemogenerator2.png)
+   ![VSTSDemogenerator2](images/DevOpsDemogenerator2.png)
 
 
 ## Exercise 1: Cloning an existing repository
 
-1. Navigate to the **Code** hub. Select **Clone** and select **Clone in Visual Studio**
+1. Navigate to the **Repos** hub. Select **Clone** and select **Clone in Visual Studio**
 
      ![clonetherepo](images/clonetherepo.png)
 
-1. An instance of **Visual Studio** opens and you might be prompted to sign into to your account. Sign in to your account
+1. An instance of **Visual Studio** opens and you might be prompted to sign into to your account. Sign in to your account.
 
 1. Set the local path where you want the local repository to be placed and select **Clone**.
 
@@ -88,13 +88,13 @@ The Azure Functions created in this exercise will act as a switching proxy or me
 
     ![notification](images/notifications.png)
 
-1. Expand your new function app, then click the + button next to Functions.
+1. Expand your new function app, then click the + button next to **Functions**.
 
-1. In the Get started quickly page, select WebHook + API, Choose C# as language for your function, and click Create this function.
+1. In the *Get started quickly page, select `WebHook + API`, Choose `CSharp` as language for your function, and click **Create this function**.
 
     ![webhook](images/webhook.png) 
 
-   > In this lab, you are using C# as script language for your function, but you can create a function in any supported language.
+   > This lab uses CSharp as script language for the function, but a function can be created in any supported language.
 
 1. Select HttpTriggerCSharp1 in Functions and click </>Get Function Url.
 
@@ -168,7 +168,7 @@ The Azure Functions created in this exercise will act as a switching proxy or me
 
 In this exercise, you will look at the build definition to get an insight of how the code is built as part of the the CI pipeline.
 
-1. Click the **Build and release** hub in VSTS portal, select the build definition *AzureFunctions_CI* and click the ellipsis `...` button and click **Edit** option in the menu to view the tasks within the build definition.
+1. Click the **Pipelines** hub in VSTS portal and notice that **Builds** menu is the default selected option. Since there is only one build definition - *AzureFunctions_CI*, click **Edit** option in the menu to view the tasks within the build definition.
 
     ![build definition](images/builddefinition.png)
 
