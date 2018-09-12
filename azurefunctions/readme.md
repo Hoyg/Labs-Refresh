@@ -2,9 +2,9 @@
 
 ## Overview
 
-Azure Functions is an event driven, compute-on-demand experience that extends the existing Azure application platform with capabilities to implement the code triggered by events occurring in Azure or third-party service as well as on-premises systems. Azure Functions allows developers to take action by connecting to data sources or messaging solutions thus making it easy to process and react to events. Developers can leverage Azure Functions to build HTTP-based API endpoints accessible by a wide range of applications, mobile and IoT devices.
+Azure Functions is an event driven, compute-on-demand experience that extends the existing Azure application platform with capabilities to implement the code triggered by events occurring in Azure or third-party service as well as on-premises systems. Azure Functions allows developers to act by connecting to data sources or messaging solutions thus making it easy to process and react to events. Developers can leverage Azure Functions to build HTTP-based API endpoints accessible by a wide range of applications, mobile and IoT devices.
 
-**Lab Scenario** : In this lab, you will be using a fictional eCommerce website - *PartsUnlimited*. The PartsUnlimited team wants to roll out a new discount for its employees and customers and wants to build Azure Functions that will retrieve the right discount depending on whether the logged in user is an employee or a customer.
+**Lab Scenario**: In this lab, you will be using a fictional eCommerce website - *PartsUnlimited*. The PartsUnlimited team wants to roll out a new discount for its employees and customers and wants to build Azure Functions that will retrieve the right discount depending on whether the logged in user is an employee or a customer.
 
  ## What is covered in this lab?
 
@@ -25,8 +25,7 @@ Azure Functions is an event driven, compute-on-demand experience that extends th
 
 1. **Azure DevOps services Organization**: You will need an Azure DevOps services account. If you don’t have one, you can sign up for one from here [here](https://azure.microsoft.com/en-us/services/devops/)
 
-1. Visual Studio 2017 version 15.4 or later  with [.Net Core SDK](https://www.microsoft.com/net/learn/get-started/windows#windows) and [Azure Development Tools for Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs) are installed.
-
+1. Visual Studio 2017 version 15.4 or later with [.Net Core SDK](https://www.microsoft.com/net/learn/get-started/windows#windows) and [Azure Development Tools for Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs) are installed.
 
 ## Create required Azure resources
 
@@ -38,21 +37,19 @@ Azure Functions is an event driven, compute-on-demand experience that extends th
 
    ![azure_resources](images/azure_resources.png)
 
-
 ## Setting up the VSTS team project
 
 1. Use the [Azure DevOps Demo Generator](http://azuredevopsdemogenerator.azurewebsites.net/?TemplateId=77376&Name=AzureFunctions_BuildWorkshop) to provision the project on your Azure DevOps Organization account.
 
-   > **Azure DevOps Demo Generator** helps you create team projects on your **Azure DevOps Organization** account with sample content that include source code, work items,iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
+   > **Azure DevOps Demo Generator** helps you create team projects on your **Azure DevOps Organization** account with sample content that include source code, work items, iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
 
    ![VSTSDemogenerator](images/DevOpsDemogenerator.png)
 
-    This URL will automatically select **AzureFunctions** template in the demo generator. If you want to try other projects, use this URL instead -   [http://azuredevopsdemogenerator.azurewebsites.net/](http://azuredevopsdemogenerator.azurewebsites.net/)
+    This URL will automatically select **AzureFunctions** template in the demo generator. If you want to try other projects, use this URL instead -  [https://azuredevopsdemogenerator.azurewebsites.net/](httpss://azuredevopsdemogenerator.azurewebsites.net/)
 
 1. Once the project is provisioned, click the URL to navigate to the project.
 
    ![VSTSDemogenerator2](images/DevOpsDemogenerator2.png)
-
 
 ## Exercise 1: Cloning an existing repository
 
@@ -156,7 +153,7 @@ The Azure Functions created in this exercise will act as a switching proxy or me
 
     ![storecontroller](images/storecontroller.png)
 
-1. In **StoreController.cs** file, replace the url variable in *line 46* with the **Function url** copied in Step 7.
+1. In **StoreController.cs** file, replace the URL variable in *line 46* with the **Function url** copied in Step 7.
 
     ![functionurl](images/replacefunctionurl.png)
 
@@ -166,28 +163,28 @@ The Azure Functions created in this exercise will act as a switching proxy or me
 
 ## Exercise 3: Setup continuous integration in Team Services
 
-In this exercise, you will look at the build definition to get an insight of how the code is built as part of the the CI pipeline.
+In this exercise, you will look at the build definition to get an insight of how the code is built as part of the CI pipeline.
 
 1. Click the **Pipelines** hub in VSTS portal and notice that **Builds** menu is the default selected option. Since there is only one build definition - *AzureFunctions_CI*, click **Edit** option in the menu to view the tasks of that build definition.
 
     ![build definition](images/builddefinition.png)
 
-1. Before the build is exectued, you will make this a **CI** build. Click the **Triggers** tab in the build definition. Enable the **Continuous Integration** trigger. Click **Save & queue**  to save the changes and trigger a build. This will ensure that the build process is automatically triggered every time you commit a change to your repository .
+1. Before the build is executed, you will make this a **CI** build. Click the **Triggers** tab in the build definition. Enable the **Continuous Integration** trigger. Click **Save & queue**  to save the changes and trigger a build. This will ensure that the build process is automatically triggered every time you commit a change to your repository.
 
     ![CI Trigger](images/enableci.png)
     ![Save and Queue](images/saveandqueue.png)
 
 1. A new build is started. You will see a link to the new build on the top of the page. Click the link to watch the live logs of the build as it progresses. Wait for the build to complete and succeed before proceeding to the next section.
 
-    ![Queued Build](images/queuedbuild.png)
+    ![Queued Build](images/queuedbuild.png) 
 
 ## Exercise 4: Creating a CD pipeline in Team Services
 
-1. Once the build succeeds, click the **Release** option from the Build & Release hub.
+1. Once the build succeeds, click the **Releases** option under the **Repos** hub.
 
-    ![Release Hub](images/releasehub.png)
+    ![Release Hub](images/releasehub.png) 
 
-1. In the Release page, select the definition **AzureFunctions_CD** and click *Edit*.
+1. In the Release page, click *Edit* for the highlighted release definition- **AzureFunctions_CD**. 
 
     ![Edit Release](images/editrelease.png) 
 
@@ -199,22 +196,23 @@ In this exercise, you will look at the build definition to get an insight of how
 
     ![Deploy Site](images/deploysite.png) 
 
-    * If your subscription is not listed or if you want to use an existing service principal, click the `Manage` link.
+    * If your Azure subscription is not listed or if you want to use an existing service principal, click the `Manage` link.
 
         * Click on the +New Service Connection button and select the Azure Resource Manager option. Provide Connection name, select the Azure Subscription from the list and the click on the Ok button. The Azure credentials will be required to be provided to authorize the connection.
 
             ![Resource Manager](images/armendpoint.png)
 
-        * If the subscription is already listed, select the Azure subscription from the list and click Authorize.
+        * If your Azure subscription is already listed, select the Azure subscription from the drop down list and click Authorize.
 
             ![Authorize](images/authorize.png) 
 
+1. Choose the pre-created **PartsUnlimited-Web-XXXX** name for **App Service Name** from the drop down.
 
-1. For the **PartsUnlimited APIs**, select the second task and configure the inputs as shown below.
+1. For the **PartsUnlimited APIs**, select the second task and configure the inputs as shown below. Choose **PartsUnlimited-API-XXX** for the **App Service Name** field from the drop down.
 
     ![PartsUnlimited API](images/api.png)
 
-1. Select the third task to deploy **PartsUnlimited Azure Function** and configure the inputs as shown below.
+1. Select the third task to deploy **PartsUnlimited Azure Function** and configure the inputs as shown below. Choose the pre-created **Azure functions** name for the **App Service Name** field from the drop down.
 
     ![PartsUnlimited Function](images/function.png)
 
@@ -236,7 +234,7 @@ In this exercise, you will look at the build definition to get an insight of how
 
 ## Exercise 5: Verify the Deployment
 
-1. Once deployment has completed, go to the Azure portal. In your resource group, select **PartsUnlimited-Web-xxxxx** and click Browse.
+1. Once deployment has completed, go to the Azure portal. In your resource group, select **PartsUnlimited-Web-xxxxx** web app and click Browse.
 
     ![Website](images/pulwebsite.png)
 
@@ -244,7 +242,7 @@ In this exercise, you will look at the build definition to get an insight of how
 
     ![Discounted Price](images/discountedprice.png)
 
-1. Now log in as user **Administrator@test.com** with password **YouShouldChangeThisPassword1!** and navigate to Oil category again. You will notice that for this user Azure function routes the request to other API and shows Discount as **30%**.
+1. Now log in as **Administrator@test.com** with password **YouShouldChangeThisPassword1!** and navigate to Oil category again. You will notice that for this user Azure function routes the request to another API and shows discount as **30%**.
 
     ![Site Login](images/sitelogin.png)
     
