@@ -23,7 +23,7 @@ Azure Functions is an event driven, compute-on-demand experience that extends th
 
    * If you are not a Visual Studio Subscriber, you can sign up for the FREE [Visual Studio Dev Essentials] (https://www.visualstudio.com/dev-essentials/) program to create **Azure free account** (includes 1 year of free services, $200 for 1st month).
 
-1. **Azure DevOps services Organization**: You will need an Azure DevOps services account. If you don’t have one, you can sign up for one from here [here](https://azure.microsoft.com/en-us/services/devops/)
+1. **Azure DevOps services Organization**: You will need an Azure DevOps services account. If you don’t have one, you can sign up for one from [here](https://azure.microsoft.com/en-us/services/devops/)
 
 1. Visual Studio 2017 version 15.4 or later with [.Net Core SDK](https://www.microsoft.com/net/learn/get-started/windows#windows) and [Azure Development Tools for Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs) are installed.
 
