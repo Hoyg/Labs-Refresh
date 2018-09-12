@@ -168,7 +168,7 @@ The Azure Functions created in this exercise will act as a switching proxy or me
 
 In this exercise, you will look at the build definition to get an insight of how the code is built as part of the the CI pipeline.
 
-1. Click the **Pipelines** hub in VSTS portal and notice that **Builds** menu is the default selected option. Since there is only one build definition - *AzureFunctions_CI*, click **Edit** option in the menu to view the tasks within the build definition.
+1. Click the **Pipelines** hub in VSTS portal and notice that **Builds** menu is the default selected option. Since there is only one build definition - *AzureFunctions_CI*, click **Edit** option in the menu to view the tasks of that build definition.
 
     ![build definition](images/builddefinition.png)
 
