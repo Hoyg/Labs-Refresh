@@ -12,7 +12,7 @@ Last updated : {{ "now" | date: "%b %d, %Y" }}
 
 **GitHub** is a web based **Git** version control repository hosting service which offers distributed version control and source code management functionality of Git.
 
-Visual Studio Team Services provides a first-class support for **Git** with several advantages including
+Azure DevOps Organization provides a first-class support for **Git** with several advantages including
 
 * Unlimited free private repositories
 * Powerful code reviews
@@ -20,16 +20,16 @@ Visual Studio Team Services provides a first-class support for **Git** with seve
 * Integrated CI/CD pipeline
 * Semantic code search
 
-The primary difference between the two is that VSTS is focused on closed source projects and GitHub is focused more on open source projects. GitHub offers both private and public repositories. However, it doesn't have an integrated build server.
+The primary difference between the two is that Azure DevOps Organization is focused on closed source projects and GitHub is focused more on open source projects. GitHub offers both private and public repositories. However, it doesn't have an integrated build server.
 
-Teams can overcome this shortfall by using Visual Studio Team Services (VSTS) as a continuous integration platform for GitHub.
+Teams can overcome this shortfall by using Azure DevOps Organization as a continuous integration platform for GitHub.
 
 ### What's covered in this lab
 
-In this hands-on lab, we will introduce you to open source DevOps using **GitHub, Visual Studio Team Services** and **Azure**. You will learn how to deploy an **ASP.Net** application to Azure App Service using CI/CD pipeline in Visual Studio Team Services with code repository in GitHub.We will cover the following steps:
+In this hands-on lab, we will introduce you to open source DevOps using **GitHub, Azure DevOps Organization** and **Azure**. You will learn how to deploy an **ASP.Net** application to Azure App Service using CI/CD pipeline in Azure DevOps Organization with code repository in GitHub. We will cover the following steps:
 
 * Forking project repository to your GitHub account
-* Linking GitHub account to VSTS
+* Linking GitHub account to Azure DevOps Organization
 * Editing the existing build definition to include source code from GitHub
 * Configuring build Triggers
 * Executing Build
@@ -40,13 +40,10 @@ In this hands-on lab, we will introduce you to open source DevOps using **GitHub
 
     * If you are an active Visual Studio Subscriber, you are entitled for a $50-$150 credit per month. You can refer to this [link](https://azure.microsoft.com/en-us/pricing/member-offers/msdn-benefits-details/){:target="_blank"} to find out more information about this including how to activate and start using your monthly Azure credit.
 
-    * If you are not a Visual Studio Subscriber, you can sign up for the FREE [Visual Studio Dev Essentials](https://www.visualstudio.com/dev-essentials/){:target="_blank"} program to create a **Azure free account** (includes 1 year of free services, $200 for 1st month).
+    * If you are not a Visual Studio Subscriber, you can sign up for the FREE [Visual Studio Dev Essentials](https://www.visualstudio.com/dev-essentials/){:target="_blank"} program to create an **Azure free account** (includes 1 year of free services, $200 for 1st month).
 
-1. You will need a **Visual Studio Team Services Account**. If you do not have one, you can sign up for free [here](https://www.visualstudio.com/products/visual-studio-team-services-vs){:target="_blank"}
+1. You will need an **Azure DevOps Organization**. If you do not have one, you can sign up for free [here](https://www.visualstudio.com/products/visual-studio-team-services-vs){:target="_blank"}
 
-1. You will need a **Personal Access Token** to set up your project using the **VSTS Demo Generator**. Please see this [article](https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate){:target="_blank"} for instructions to create your token.
-
-    {% include note.html content= "You should treat Personal Access Tokens like passwords. It is recommended that you save them somewhere safe so that you can re-use them for future requests." %}
 
 1. A **GitHub** account. Create a new account from [here](https://github.com/join?source=header-home){:target="_blank"}.
 
@@ -60,24 +57,24 @@ There are multiple ways to add code to a GitHub repository. We can start with a 
 
    ![8](images/8.png)
 
-## Setting up the VSTS team project
+## Setting up the Azure DevOps Organization team project
 
-1. Use the [VSTS Demo Generator](https://vstsdemogenerator.azurewebsites.net/?Name=GitHub&TemplateId=77366) to provision the team project on the VSTS account.
+1. Use the [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/?Name=GitHub&TemplateId=77366) to provision the team project on your Azure DevOps Organization.
 
-   > **VSTS Demo Generator** helps you create team projects on your VSTS account with sample content that include source code, work items,iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
+   > **VSTS Demo Generator** helps you create team projects on your VSTS account with sample content that include source code, work items, iterations, service endpoints, build and release definitions based on the template you choose during the configuration.
 
-   ![VSTS Demo Generator](images/vstsdemo.png)
+   ![VSTS Demo Generator](images/vstsdemogen1-1.png)
 
-1. Once the team project is provisioned, click on the URL to navigate to the team project.
+1. Once team project is provisioned, click on the URL to navigate to the team project.
 
-   ![VSTS Demo Generator](images/vstsdemo2.png)
+   ![VSTS Demo Generator](images/vstsdemogen1_2.png)
 
-## Exercise 1: Connecting VSTS to GitHub repository
+## Exercise 1: Connecting Azure DevOps Organization to GitHub repository
 
-1. In the VSTS home page, click on the **Project settings** gear icon and then click on the **Service connections** option to navigate to the **Service connections** screen.
-Click on the **+New Service Endpoint** dropdown and select the **Github** option. 
+1. In the Azure DevOps Organization home page, click on the **Project settings** gear icon and then click on **Service connections** option to navigate to the **Service connections** screen.
+Click on **+New Service Endpoint** dropdown and select the **Github** option. 
 
-   ![3](images/endpoint3- Settings.png)
+   ![VSTS Demo Generator](images/endpoint1_3.png)
 
    {% include important.html content= "We will need to specify what authorization method you want to provide. If we choose **Grant Authorization**, the default option, as the authorization method, the dialog shows an **Authorize** button that opens the GitHub login page. If we select **Personal access token**, we must obtain a suitable token and paste it into the Token textbox. The dialog shows the recommended scopes for the token: ***repo, user, admin:repo_hook***. See [this page](https://help.github.com/articles/creating-an-access-token-for-command-line-use/){:target=\"_blank\"} on GitHub for information about obtaining an access token." %}
 
@@ -99,21 +96,21 @@ Click on the **+New Service Endpoint** dropdown and select the **Github** option
 
 ## Exercise 2: Configure Build
 
-1. Go to **Builds** under **Build & Release**. Click the ellipsis next to the build definition **GitHub** and choose **Edit**.
+1. Go to **Builds** under **Pipelines**. Select the build definition **GitHub** and choose to **Edit**.
 
-   ![17](images/build6.png)
+   ![17](images/build1_4.png)
 
-1. Click on **Get Sources** under the Tasks tab. Select **GitHub** as the source, confirm that the service endpoint connection created in #2 of the previous exercise shows up as a drop down value, select it. Select the appropriate **Repository** and choose the **master Branch** from which the source will be fetched. Save the build definition.
+1. Click on **Get Sources** under the Tasks tab. Select **GitHub** as the source, confirm that the service endpoint connection created in #2 of the previous exercise shows up as a dropdown value, select it. Select appropriate **Repository** and choose **master Branch** from which the source will be fetched. **Save** the build definition.
 
    ![19](images/build7.png)
 
 ## Exercise 3: Configure Release
 
-1. Go to Releases under Build & Release tab, edit the release definition GitHub.
+1. Go to **Releases** under **Pipelines** tab, edit the release definition GitHub.
 
-   ![39](images/release8.png)
+   ![39](images/release1_4.png)
 
-1. Select Tasks and click **Dev**.
+1. Select **Tasks** and click **Dev**.
 
    ![40](images/release9.png)
 
@@ -121,7 +118,7 @@ Click on the **+New Service Endpoint** dropdown and select the **Github** option
    
     * If your subscription is not listed or if you want to use an existing service principal, click the `Manage` link. 
 
-        1. Click on the `+New Service Connection` button and select the **Azure Resource Manager** option. Provide Connection name, select the Azure Subscription from the list and the click on the Ok button. The Azure credentials will be required to be provided to authorize the connection.
+        1. Click on the `+New Service Connection` button and select the **Azure Resource Manager** option. Provide Connection name, select the Azure Subscription from the list and the click on the Ok button. The Azure credentials will be required to authorize the connection.
 
         ![Endpoint](images/endpoint5_1.png)
 
@@ -155,17 +152,19 @@ Navigate to your forked GitHub repository. Let's make a simple change in the cod
 
    ![15](images/15.png)
 
-1. The code commit will trigger a CI build. Go to the **Build** tab in your VSTS project to see the CI build in progress.
+1. The code commit will trigger a CI build. Go to the **Build** tab in your Azure DevOps Organization project to see the CI build in progress. Click on ellipsis to **View build results**.
+
+   ![30](images/buildprog1_6.png)
 
 1. Once the build is complete, you will see the summary which shows **Test Results** and **Code Coverage**.
 
-   ![20](images/buildsucc13.png)
+   ![20](images/buildsuccess1_2.png)
 
    > The release uses **Infrastructure as a Code** to automate the provisioning of Azure App service and SQL Azure service. The release is configured to trigger upon successful completion of the CI build.
 
-1. Go to **Releases** tab under Build and Release hub. Select the **GitHub** definition, you will see a release in-progress.
+1. Go to **Releases** tab under Pipelines hub. Select the **GitHub** definition, you will see a release in-progress.
 
-   ![30](images/release14.png)
+   ![30](images/release1_3.png)
 
 1. Let us explore the release definition. Click edit to see the release pipeline where the target environment is **Dev**.
 
@@ -183,9 +182,9 @@ Navigate to your forked GitHub repository. Let's make a simple change in the cod
 
 1. Once the release is complete click on **Logs**, you will see the task-wise summary.
 
-    ![35](images/release.png)
+    ![35](images/release1_8.png)
 
-    ![36](images/release21.png)
+    ![36](images/releasesucc1_1.png)
 
 1. Login to [Azure Portal](https://portal.azure.com/){:target="_blank"} and search for **Github** resource group. Click the web app in the resource group and you will see the application deployed successfully with the changes.
 
